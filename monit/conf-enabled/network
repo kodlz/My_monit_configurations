@@ -1,0 +1,51 @@
+check network br-guest_turris with interface br-guest_turris
+    if failed link then alert
+    if changed link then alert
+
+check network br-lan with interface br-lan
+    if failed link then alert
+
+check network eth0 with interface eth0
+    if failed link then alert
+    if changed link then alert
+    if saturation > 90% then alert
+    if download > 30 MB/s then alert
+    if upload > 10 MB/s then alert
+    if total uploaded > 1 GB in last hour then alert
+
+check network eth1 with interface eth1
+    if failed link then alert
+
+check network eth2 with interface eth2
+    if failed link then alert
+
+check network guest_turris_1 with interface guest_turris_1
+    if failed link then alert
+
+check network lan0 with interface lan0
+    if failed link then alert
+
+check network lan1 with interface lan1
+    if failed link then alert
+
+check network lan2 with interface lan2
+    if failed link then alert
+
+check network lan3 with interface lan3
+    if failed link then alert
+
+check network lan4 with interface lan4
+    if failed link then alert
+
+check network tun_turris with interface tun_turris
+    if failed link then alert
+
+check network wlan0 with interface wlan0
+    if failed link then alert
+
+check network wlan1 with interface wlan1
+    if failed link then alert
+
+check network wlan1-2 with interface wlan1-2
+    if failed link then alert
+

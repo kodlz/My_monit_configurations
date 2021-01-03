@@ -1,0 +1,12 @@
+## Check hostapd 5G wifi
+check process hostapd_5G matching "wifi-phy0.pid"
+        start program = "/usr/sbin/hostapd -P /var/run/wifi-phy0.pid -B /var/run/hostapd-phy0.conf" with timeout 60 seconds
+        stop program = "/usr/bin/killall hostapd"
+    if 5 restarts within 5 cycles then timeout
+
+## Check hostapd 2.4G wifi
+check process hostapd_2.4G matching "wifi-phy1.pid"
+        start program = "/usr/sbin/hostapd -P /var/run/wifi-phy1.pid -B /var/run/hostapd-phy1.conf" with timeout 60 seconds
+        stop program = "/usr/bin/killall hostapd"
+    if 5 restarts within 5 cycles then timeout
+

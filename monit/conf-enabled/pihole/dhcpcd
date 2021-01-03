@@ -1,0 +1,6 @@
+check host dhcpcd with address 127.0.0.1
+		start program = "/etc/init.d/dhcpcd start" with timeout 20 seconds
+		stop  program = "/etc/init.d/dhcpcd stop"
+	if failed port 68 type udp with timeout 5 seconds for 2 cycles then restart
+	if 4 restarts within 5 cycles then unmonitor
+

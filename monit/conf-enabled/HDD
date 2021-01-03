@@ -1,0 +1,28 @@
+# add each drive you want to monitor below
+#
+#check filesystem NAS_fs with path /dev/mapper/nas
+check filesystem NAS_fs with path /mnt/nas
+    if does not exist then exec "/bin/mount -a"
+    if space usage > 90% then alert
+#
+#check filesystem SRV_fs with path /dev/mapper/srv
+check filesystem SRV_fs with path /srv
+    if does not exist then exec "/bin/mount -a"
+    if space usage > 90% then alert
+#
+check filesystem router_fs with path /dev/mmcblk0p1
+    if space usage > 90% then alert
+#
+#
+#HDD temperature
+check program HDD_Temperature with path "/etc/monit/scripts/HDDtemp.sh"
+    every 5 cycles
+    if status > 45 then alert
+    group temperature
+#
+#
+#SMART Overall Health
+check program HDD-Health with path "/etc/monit/scripts/sdahealth.sh"
+    every 120 cycles
+    if status !=0  then alert
+

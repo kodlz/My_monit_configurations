@@ -1,0 +1,7 @@
+#Pihole LXC container check
+check process LXC_Pihole matching "lxc-start -n Pihole"
+        start program = "/usr/bin/lxc-start -n Pihole"
+        stop program = "/usr/bin/lxc-stop -n Pihole"
+    IF does not exist THEN RESTART
+    IF 2 RESTARTS WITHIN 5 CYCLES THEN UNMONITOR
+

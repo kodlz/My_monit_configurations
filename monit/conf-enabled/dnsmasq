@@ -1,0 +1,5 @@
+check host dnsmasq with address 127.0.0.1
+        start program = "/etc/init.d/dnsmasq start" with timeout 20 seconds
+        stop  program = "/etc/init.d/dnsmasq stop"
+    if failed port 53 type tcp with timeout 5 seconds for 2 cycles then restart
+    if 4 restarts within 5 cycles then unmonitor

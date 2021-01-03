@@ -1,0 +1,16 @@
+#Samba process check
+check process smbd matching "smbd"
+	group samba
+		start program = "/etc/init.d/samba4 start"
+		stop  program = "/etc/init.d/samba4 stop"
+	if failed host 192.168.1.1 port 139 type TCP for 2 cycles then restart
+	if 2 restarts within 3 cycles then unmonitor
+
+
+check process nmbd matching "nmbd"
+	group samba
+		start program = "/etc/init.d/samba4 start"
+		stop  program = "/etc/init.d/samba4 stop"
+	if failed host 192.168.1.1 port 138 type UDP for 2 cycles then restart
+	if failed host 192.168.1.1 port 137 type UDP for 2 cycles then restart
+	if 2 restarts within 3 cycles then unmonitor
